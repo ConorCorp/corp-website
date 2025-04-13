@@ -1,4 +1,4 @@
-# CORP. band's website
+# CORP. band's windows 98 website
 
 1 file to rule them all.
 
