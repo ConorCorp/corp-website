@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CORP - Official Band Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "win98-bg": "#008080",
+              "win98-gray": "#c0c0c0",
+              "win98-blue": "#000080",
+              "win98-dark": "#868a8e",
+              "win98-light": "#ffffff",
+            },
+            boxShadow: {
+              "win98-out":
+                "inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #ffffff, inset -2px -2px 0 #868a8e, inset 2px 2px 0 #c0c0c0",
+              "win98-in":
+                "inset -1px -1px 0 #ffffff, inset 1px 1px 0 #0a0a0a, inset -2px -2px 0 #c0c0c0, inset 2px 2px 0 #868a8e",
+              "win98-window":
+                "inset 1px 1px 0 #ffffff, inset -1px -1px 0 #0a0a0a, inset 2px 2px 0 #c0c0c0, inset -2px -2px 0 #868a8e",
+            },
+            fontFamily: {
+              "ms-sans": ['"MS Sans Serif"', "Tahoma", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer components {
+        .desktop-icon {
+          @apply flex flex-col items-center justify-center w-20 p-2 cursor-pointer text-white text-center text-sm hover:bg-blue-800/50;
+        }
+        .icon-img {
+          @apply w-10 h-10 mb-1;
+        }
+        .win98-btn {
+          @apply px-4 py-1 bg-win98-gray shadow-win98-out font-ms-sans active:shadow-win98-in;
+        }
+        .start-btn {
+          @apply flex items-center px-2 py-1 bg-win98-gray shadow-win98-out font-ms-sans active:shadow-win98-in;
+        }
+        .win98-window {
+          @apply fixed bg-win98-gray shadow-win98-window rounded-none overflow-hidden z-10 hidden p-1;
+        }
+        .window-titlebar {
+          @apply flex items-center justify-between px-1 py-1 bg-win98-blue text-white font-bold cursor-move mb-1;
+        }
+        .window-content {
+          @apply p-4 bg-win98-gray overflow-auto;
+        }
+        .window-controls {
+          @apply flex space-x-1;
+        }
+        .window-control-btn {
+          @apply w-5 h-5 bg-win98-gray shadow-win98-out active:shadow-win98-in flex items-center justify-center text-black;
+        }
+        .taskbar-item {
+          @apply h-7 px-2 shadow-win98-out flex items-center cursor-pointer;
+        }
+
+        .taskbar-item img.icon {
+          @apply w-4 h-4 mr-1;
+        }
+      }
+
+      /* MS Sans Serif font */
+      @font-face {
+        font-family: "MS Sans Serif";
+        src: url("https://unpkg.com/98.css@0.1.17/dist/ms_sans_serif.woff2")
+          format("woff2");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      /* Height-based media query for desktop icons */
+      @media (max-height: 700px) {
+        .desktop-icons {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.75rem;
+          width: 12rem;
+        }
+      }
+
+      /* Mobile device styles */
+      @media (max-width: 768px) {
+        .win98-window {
+          width: calc(100% - 20px) !important;
+          height: calc(100% - 60px) !important;
+          left: 10px !important;
+          top: 10px !important;
+          position: fixed;
+        }
+
+        .window-content {
+          max-height: calc(100% - 28px);
+        }
+
+        .taskbar-item {
+          width: 30px !important;
+          padding: 0 !important;
+          justify-content: center;
+        }
+
+        .taskbar-item span.title {
+          display: none;
+        }
+
+        .taskbar-item img.icon {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-win98-bg font-ms-sans overflow-hidden h-screen flex flex-col">
+    <!-- Desktop -->
+    <main class="flex-grow relative">
+      <!-- Desktop Icons -->
+      <div class="desktop-icons absolute top-4 left-4 space-y-3 md:space-y-4">
+        <!-- Events Icon -->
+        <div class="desktop-icon" data-window="events-window">
+          <div class="icon-img flex items-center justify-center p-1">
+            <img src="calendar.png" alt="Events" class="w-8 h-8" />
+          </div>
+          <span>Events</span>
+        </div>
+
+        <div class="desktop-icon" data-window="social-window">
+          <div class="icon-img flex items-center justify-center p-1">
+            <img src="people.png" alt="Social Media" class="w-8 h-8" />
+          </div>
+          <span>Social</span>
+        </div>
+
+        <!-- Merch Icon -->
+        <div class="desktop-icon" data-window="merch-window">
+          <div class="icon-img flex items-center justify-center p-1">
+            <img src="spider.png" alt="Merch" class="w-8 h-8" />
+          </div>
+          <span>Merch</span>
+        </div>
+
+        <!-- Music Icon -->
+        <div class="desktop-icon" data-window="music-window">
+          <div class="icon-img flex items-center justify-center p-1">
+            <img src="music.png" alt="Music" class="w-8 h-8" />
+          </div>
+          <span>Music</span>
+        </div>
+
+        <!-- Mailing List Icon -->
+        <div class="desktop-icon" data-window="mailing-window">
+          <div class="icon-img flex items-center justify-center p-1">
+            <img src="mail.png" alt="Mailing List" class="w-8 h-8" />
+          </div>
+          <span>Mailing List</span>
+        </div>
+
+        <!-- EPK Icon -->
+        <div class="desktop-icon" data-window="booking-window">
+          <div class="icon-img flex items-center justify-center p-1">
+            <img src="computer.png" alt="Computer" class="w-8 h-8" />
+          </div>
+          <span>Booking</span>
+        </div>
+
+        <!-- Trash Icon -->
+        <div class="desktop-icon" data-window="trash-window">
+          <div class="icon-img flex items-center justify-center p-1">
+            <img src="recycle.png" alt="Recycle Bin" class="w-8 h-8" />
+          </div>
+          <span>Recycle Bin</span>
+        </div>
+      </div>
+
+      <!-- Windows -->
+      <!-- Computer Window -->
+      <div id="computer-window" class="win98-window w-[500px] h-[400px]">
+        <div class="window-titlebar">
+          <div>My Computer</div>
+          <div class="window-controls">
+            <button class="window-control-btn minimize-btn font-bold">_</button>
+            <button class="window-control-btn maximize-btn">
+              <div
+                class="w-2 h-2 border border-black bg-win98-gray border-t-2"
+              ></div>
+            </button>
+            <button class="window-control-btn close-btn">×</button>
+          </div>
+        </div>
+        <div class="window-content h-[calc(100%-30px)]">
+          <p>My Computer contents would go here.</p>
+        </div>
+      </div>
+
+      <!-- Music Window -->
+      <div id="music-window" class="win98-window w-[500px] h-[400px]">
+        <div class="window-titlebar">
+          <div>CORP Music</div>
+          <div class="window-controls">
+            <button class="window-control-btn minimize-btn font-bold">_</button>
+            <button class="window-control-btn maximize-btn">
+              <div
+                class="w-2 h-2 border border-black bg-win98-gray border-t-2"
+              ></div>
+            </button>
+            <button class="window-control-btn close-btn">×</button>
+          </div>
+        </div>
+        <div class="window-content h-[calc(100%-30px)]">
+          <h2 class="text-xl mb-4">Music For Profit</h2>
+          <iframe
+            style="border: 0; aspect-ratio: 16/9; width: 100% !important"
+            src="https://www.youtube.com/embed/OumeCXiSUuU?si=lKZBSALydi3YYRCH"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <h2 class="text-xl my-4">More Music For Profit</h2>
+          <iframe
+            style="border: 0; width: 100%; min-height: 400px"
+            src="https://bandcamp.com/EmbeddedPlayer/album=1854263188/size=large/bgcol=ffffff/linkcol=0687f5/artwork=small/transparent=true/"
+            seamless
+            ><a
+              href="https://corpband.bandcamp.com/album/whispers-from-the-water-cooler"
+              >Whispers from the Water Cooler by CORP.</a
+            ></iframe
+          >
+          <h2 class="text-xl my-4">Other Platforms (for Profit)</h2>
+          <div class="grid grid-cols-1 gap-3">
+            <a
+              href="https://open.spotify.com/artist/501XpbV9evuc6BWl2RDuwy?si=OxreQk1-Q22R-SkDiPB1BA"
+              target="_blank"
+              class="win98-btn flex items-center"
+            >
+              <span>Spotify</span>
+            </a>
+            <a
+              href="https://music.apple.com/us/artist/corp/1637650743"
+              target="_blank"
+              class="win98-btn flex items-center"
+            >
+              <span>Apple Music</span>
+            </a>
+            <a
+              href="https://music.youtube.com/channel/UCRSIysOFw7Zg3tDZZ1MV1Zw"
+              target="_blank"
+              class="win98-btn flex items-center"
+            >
+              <span>YouTube Music</span>
+            </a>
+            <a
+              href="https://corpband.bandcamp.com/"
+              target="_blank"
+              class="win98-btn flex items-center"
+            >
+              <span>Bandcamp</span>
+            </a>
+            <p class="ml-2">and more!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Events Window -->
+      <div id="events-window" class="win98-window w-[500px] h-[400px]">
+        <div class="window-titlebar">
+          <div>CORP Events</div>
+          <div class="window-controls">
+            <button class="window-control-btn minimize-btn font-bold">_</button>
+            <button class="window-control-btn maximize-btn">
+              <div
+                class="w-2 h-2 border border-black bg-win98-gray border-t-2"
+              ></div>
+            </button>
+            <button class="window-control-btn close-btn">×</button>
+          </div>
+        </div>
+        <div class="window-content h-[calc(100%-30px)]">
+          <h2 class="text-xl mb-4">
+            Upcoming Shows |
+            <span class="text-base">
+              <a
+                class="underline"
+                href="https://www.songkick.com/artists/401675"
+                >Songkick</a
+              >
+              -
+              <a
+                class="underline"
+                href="https://www.bandsintown.com/a/15564058-corp."
+                >Bandsintown</a
+              >
+            </span>
+          </h2>
+          <a
+            href="https://www.songkick.com/artists/401675"
+            class="songkick-widget"
+            data-theme="light"
+            data-track-button="on"
+            data-detect-style="on"
+            data-locale="en"
+            data-other-artists="on"
+            data-share-button="on"
+            data-country-filter="on"
+            data-rsvp="on"
+            data-request-show="on"
+            data-past-events="on"
+            data-past-events-offtour="off"
+            data-remind-me="off"
+            style="display: none"
+          ></a>
+          <script src="//widget-app.songkick.com/injector/401675"></script>
+        </div>
+      </div>
+
+      <!-- Social Window -->
+      <div id="social-window" class="win98-window w-[500px] h-[400px]">
+        <div class="window-titlebar">
+          <div>Social</div>
+          <div class="window-controls">
+            <button class="window-control-btn minimize-btn font-bold">_</button>
+            <button class="window-control-btn maximize-btn">
+              <div
+                class="w-2 h-2 border border-black bg-win98-gray border-t-2"
+              ></div>
+            </button>
+            <button class="window-control-btn close-btn">×</button>
+          </div>
+        </div>
+        <div class="window-content h-[calc(100%-30px)]">
+          <h2 class="text-xl mb-4">Follow CORP</h2>
+          <p class="mb-4">Merge your data into our corporate structure:</p>
+          <div class="grid grid-cols-1 gap-3">
+            <a
+              href="https://www.instagram.com/corpband/"
+              target="_blank"
+              class="win98-btn flex items-center"
+            >
+              <span>Instagram</span>
+            </a>
+            <a
+              href="https://youtube.com/"
+              target="_blank"
+              class="win98-btn flex items-center"
+            >
+              <span>YouTube</span>
+            </a>
+            <a
+              href="https://www.facebook.com/corpband/"
+              target="_blank"
+              class="win98-btn flex items-center"
+            >
+              <span>Facebook</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Merch Window -->
+      <div id="merch-window" class="win98-window w-[500px] h-[400px]">
+        <div class="window-titlebar">
+          <div>CORP Merchandise</div>
+          <div class="window-controls">
+            <button class="window-control-btn minimize-btn font-bold">_</button>
+            <button class="window-control-btn maximize-btn">
+              <div
+                class="w-2 h-2 border border-black bg-win98-gray border-t-2"
+              ></div>
+            </button>
+            <button class="window-control-btn close-btn">×</button>
+          </div>
+        </div>
+        <div class="window-content h-[calc(100%-30px)]">
+          <h2 class="text-xl mb-4">OfficialCORP Merch</h2>
+          <p class="mb-4">Be the coolest drone at the water cooler:</p>
+          <ul class="list-disc list-inside mb-4">
+            <li>Windows 98 Themed T-shirts - $25</li>
+            <li>Floppy Disk Coasters (set of 4) - $15</li>
+            <li>CORP Vaporware Vinyl LP - $30</li>
+            <li>CORP Pixelated Logo Hat - $20</li>
+          </ul>
+          <a
+            href="https://corpband.bandcamp.com/"
+            target="_blank"
+            class="win98-btn inline-block mt-4"
+            >Shop on Bandcamp</a
+          >
+        </div>
+      </div>
+
+      <!-- Mailing List Window -->
+      <div id="mailing-window" class="win98-window w-[500px] h-[400px]">
+        <div class="window-titlebar">
+          <div>CORP Mailing List</div>
+          <div class="window-controls">
+            <button class="window-control-btn minimize-btn font-bold">_</button>
+            <button class="window-control-btn maximize-btn">
+              <div
+                class="w-2 h-2 border border-black bg-win98-gray border-t-2"
+              ></div>
+            </button>
+            <button class="window-control-btn close-btn">×</button>
+          </div>
+        </div>
+        <div class="window-content h-[calc(100%-30px)]">
+          <h2 class="text-xl mb-4">Join Our Mailing List</h2>
+          <p class="mb-4">Or become fodder for the machine:</p>
+          <div class="mb-4">
+            <label class="block mb-1">Email:</label>
+            <input
+              type="email"
+              class="w-full p-1 border border-win98-dark shadow-win98-in"
+              placeholder="your@email.com"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Name:</label>
+            <input
+              type="text"
+              class="w-full p-1 border border-win98-dark shadow-win98-in"
+              placeholder="Your Name"
+            />
+          </div>
+          <button class="win98-btn">Subscribe</button>
+        </div>
+      </div>
+
+      <!-- EPK Window -->
+      <div id="booking-window" class="win98-window w-[500px] h-[400px]">
+        <div class="window-titlebar">
+          <div>CORP Booking</div>
+          <div class="window-controls">
+            <button class="window-control-btn minimize-btn font-bold">_</button>
+            <button class="window-control-btn maximize-btn">
+              <div
+                class="w-2 h-2 border border-black bg-win98-gray border-t-2"
+              ></div>
+            </button>
+            <button class="window-control-btn close-btn">×</button>
+          </div>
+        </div>
+        <div class="window-content h-[calc(100%-30px)]">
+          <h2 class="text-xl mb-4">Book CORP for Your Event</h2>
+          <p class="mb-4">
+            Interested in booking CORP for your venue or event? Contact us via
+            email:
+          </p>
+          <div class="p-3 bg-white shadow-win98-in mb-6 break-all">
+            <a
+              href="mailto:corp.band.contact@gmail.com"
+              class="text-blue-800 underline"
+              >corp.band.contact@gmail.com</a
+            >
+          </div>
+          <p class="mb-4">
+            Check out our Electronic Press Kit for investment opportunities and
+            unspoken riches:
+          </p>
+          <a
+            href="https://sites.google.com/view/corp-epk/home"
+            class="win98-btn inline-block"
+            target="_blank"
+            >Link to EPK</a
+          >
+        </div>
+      </div>
+
+      <!-- Trash Window -->
+      <div id="trash-window" class="win98-window w-[500px] h-[400px]">
+        <div class="window-titlebar">
+          <div>Recycle Bin</div>
+          <div class="window-controls">
+            <button class="window-control-btn minimize-btn font-bold">_</button>
+            <button class="window-control-btn maximize-btn">
+              <div
+                class="w-2 h-2 border border-black bg-win98-gray border-t-2"
+              ></div>
+            </button>
+            <button class="window-control-btn close-btn">×</button>
+          </div>
+        </div>
+        <div class="window-content h-[calc(100%-30px)]">
+          <p class="mb-4">The Recycle Bin is empty.</p>
+          <button class="win98-btn" id="empty-recycle-bin">
+            Empty Recycle Bin
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Taskbar -->
+    <footer class="h-10 bg-win98-gray shadow-win98-out flex items-center px-1">
+      <!-- Start Button -->
+      <button class="start-btn h-7 flex-shrink-0">
+        <img
+          src="windows.png"
+          class="mr-1"
+          alt="Windows"
+          width="16"
+          height="16"
+        />
+        <span>CORP.</span>
+      </button>
+
+      <!-- Divider -->
+      <div class="h-7 w-px bg-win98-dark mx-1 shadow-[1px_0_0_#ffffff]"></div>
+
+      <!-- Open windows in taskbar -->
+      <div id="taskbar-items" class="flex space-x-1">
+        <!-- Taskbar items will be added dynamically -->
+      </div>
+
+      <!-- Clock -->
+      <div
+        class="ml-auto px-2 h-7 shadow-win98-in flex items-center flex-shrink-0"
+      >
+        <span id="clock" class="text-xs">12:00 PM</span>
+      </div>
+    </footer>
+
+    <script>
+      // Update clock
+      function updateClock() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const ampm = hours >= 12 ? "PM" : "AM";
+        const displayHours = hours % 12 || 12;
+        const displayMinutes = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById(
+          "clock"
+        ).textContent = `${displayHours}:${displayMinutes} ${ampm}`;
+      }
+
+      updateClock();
+      setInterval(updateClock, 60000);
+
+      // Console log message
+      const style =
+        "background-color: darkred; color: white; font-style: italic; border: 5px solid yellow; font-size: 2em;";
+      console.log(
+        '%cNotice: Unwelcomed visitors will be (consent accordingly) rerouted to department: "Requistions & Decapitations" for processing. Type `acceptTerms()` to continue.',
+        style
+      );
+
+      // Console interaction
+      window.acceptTerms = function () {
+        const randomNumber = Math.floor(Math.random() * 900000) + 100000; // Random number over 100k
+        console.log(
+          `You have been added to the queue. Your number is: ${randomNumber}`
+        );
+
+        let currentNumber = randomNumber;
+        let intervalId;
+
+        // Function to decrement number at random intervals
+        const startCountdown = () => {
+          currentNumber--;
+          console.log(`Decapitation queue number: ${currentNumber}`);
+
+          if (currentNumber <= 0) {
+            console.log(
+              "%cError 431 - Requested Head Too Large",
+              "color: red; font-size: 16px; font-weight: bold;"
+            );
+            return;
+          }
+
+          // Set new random interval between 1-10 seconds
+          const randomInterval = Math.floor(Math.random() * 10000);
+          intervalId = setTimeout(startCountdown, randomInterval);
+        };
+
+        // Start with initial timeout
+        setTimeout(startCountdown, Math.floor(Math.random() * 1000));
+        return "Request received by customer service representative. Processing...";
+      };
+
+      // Empty Recycle Bin Easter Egg
+      document
+        .getElementById("empty-recycle-bin")
+        .addEventListener("click", function () {
+          // Replace entire body content with 404 error
+          document.body.innerHTML = `
+          <div style="font-family: Times New Roman, serif; padding: 5vh;">
+            <h1 style="font-size: 48px; line-height: 1.2; font-weight: bold;">Error 404 - Page Not Found</h1>
+            <p style="font-size: 12px;">You didn't recycle the website..... did you?
+              <img src="cry.gif" alt="cry" style="display: inline-block;">
+              </p>
+          </div>
+        `;
+          document.body.style.background = "white";
+        });
+
+      // Handle desktop icons click
+      const desktopIcons = document.querySelectorAll(".desktop-icon");
+      const windows = document.querySelectorAll(".win98-window");
+      const taskbarItems = document.getElementById("taskbar-items");
+      let activeWindow = null;
+      let zIndex = 100;
+
+      // Function to make a window active
+      function makeWindowActive(windowEl) {
+        if (activeWindow) {
+          activeWindow.style.zIndex = 10;
+        }
+        windowEl.style.zIndex = ++zIndex;
+        activeWindow = windowEl;
+
+        // Update all taskbar items
+        document.querySelectorAll(".taskbar-item").forEach((item) => {
+          if (item.dataset.window === windowEl.id) {
+            item.classList.add("shadow-win98-in");
+          } else {
+            item.classList.remove("shadow-win98-in");
+          }
+        });
+      }
+
+      // Function to create a taskbar item
+      function createTaskbarItem(windowId, title) {
+        const existingItem = document.querySelector(
+          `.taskbar-item[data-window="${windowId}"]`
+        );
+        if (!existingItem) {
+          const item = document.createElement("div");
+          item.className =
+            "taskbar-item h-7 px-2 shadow-win98-out flex items-center cursor-pointer";
+          item.dataset.window = windowId;
+
+          // Get icon image based on windowId
+          let iconSrc = "";
+          switch (windowId) {
+            case "events-window":
+              iconSrc = "calendar.png";
+              break;
+            case "social-window":
+              iconSrc = "people.png";
+              break;
+            case "merch-window":
+              iconSrc = "spider.png";
+              break;
+            case "music-window":
+              iconSrc = "music.png";
+              break;
+            case "mailing-window":
+              iconSrc = "mail.png";
+              break;
+            case "booking-window":
+              iconSrc = "computer.png";
+              break;
+            case "trash-window":
+              iconSrc = "recycle.png";
+              break;
+            default:
+              iconSrc = "computer.png";
+              break;
+          }
+
+          // Create icon image element
+          const iconImg = document.createElement("img");
+          iconImg.src = iconSrc;
+          iconImg.className = "icon mr-1";
+          iconImg.alt = title;
+          iconImg.width = 16;
+          iconImg.height = 16;
+
+          // Create title span element
+          const titleSpan = document.createElement("span");
+          titleSpan.className = "title";
+          titleSpan.textContent = title;
+
+          // Add both to item
+          item.appendChild(iconImg);
+          item.appendChild(titleSpan);
+
+          item.addEventListener("click", () => {
+            const win = document.getElementById(windowId);
+            if (win.style.display === "block") {
+              if (activeWindow === win) {
+                win.style.display = "none";
+                item.classList.remove("shadow-win98-in");
+              } else {
+                makeWindowActive(win);
+              }
+            } else {
+              win.style.display = "block";
+              makeWindowActive(win);
+            }
+          });
+          taskbarItems.appendChild(item);
+        }
+      }
+
+      // Initialize draggable windows
+      windows.forEach((windowEl) => {
+        const titleBar = windowEl.querySelector(".window-titlebar");
+        const closeBtn = windowEl.querySelector(".close-btn");
+        const minimizeBtn = windowEl.querySelector(".minimize-btn");
+        const maximizeBtn = windowEl.querySelector(".maximize-btn");
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        // Position windows based on device size
+        function positionWindow() {
+          // Check if mobile
+          if (window.innerWidth <= 768) {
+            // Mobile - viewport size with margins
+            windowEl.style.width = "calc(100% - 20px)";
+            windowEl.style.height = "calc(100% - 60px)";
+            windowEl.style.left = "10px";
+            windowEl.style.top = "10px";
+          } else {
+            // Desktop - random positioning with slight offsets
+            const randomX = 50 + Math.random() * 100;
+            const randomY = 50 + Math.random() * 100;
+            windowEl.style.left = `${randomX}px`;
+            windowEl.style.top = `${randomY}px`;
+          }
+        }
+
+        // Set initial position
+        positionWindow();
+
+        // Update position on resize
+        window.addEventListener("resize", function () {
+          if (windowEl.style.display === "block") {
+            positionWindow();
+          }
+        });
+
+        // Make window draggable
+        titleBar.addEventListener("mousedown", (e) => {
+          // Only allow dragging on desktop
+          if (window.innerWidth > 768) {
+            isDragging = true;
+            offsetX = e.clientX - windowEl.offsetLeft;
+            offsetY = e.clientY - windowEl.offsetTop;
+          }
+          makeWindowActive(windowEl);
+        });
+
+        document.addEventListener("mousemove", (e) => {
+          if (isDragging) {
+            windowEl.style.left = `${e.clientX - offsetX}px`;
+            windowEl.style.top = `${e.clientY - offsetY}px`;
+          }
+        });
+
+        document.addEventListener("mouseup", () => {
+          isDragging = false;
+        });
+
+        // Window focus on click
+        windowEl.addEventListener("mousedown", () => {
+          makeWindowActive(windowEl);
+        });
+
+        // Close button
+        closeBtn.addEventListener("click", () => {
+          // Stop any video playback by targeting iframes
+          const iframes = windowEl.querySelectorAll("iframe");
+          iframes.forEach((iframe) => {
+            const originalSrc = iframe.src;
+            iframe.src = ""; // kill the iframe
+            iframe.src = originalSrc; // restore the iframe for later
+          });
+
+          windowEl.style.display = "none";
+          const taskbarItem = document.querySelector(
+            `.taskbar-item[data-window="${windowEl.id}"]`
+          );
+          if (taskbarItem) {
+            taskbarItems.removeChild(taskbarItem);
+          }
+        });
+
+        // Minimize button
+        minimizeBtn.addEventListener("click", () => {
+          windowEl.style.display = "none";
+
+          // Get window title
+          const title = windowEl.querySelector(
+            ".window-titlebar div"
+          ).textContent;
+
+          // Add to taskbar if not already there
+          createTaskbarItem(windowEl.id, title);
+        });
+
+        // Maximize button (toggle between maximized and normal)
+        let isMaximized = false;
+        let prevDimensions = {};
+
+        maximizeBtn.addEventListener("click", () => {
+          // On mobile, maximize button does nothing as windows are already maximized
+          if (window.innerWidth <= 768) return;
+
+          if (!isMaximized) {
+            prevDimensions = {
+              width: windowEl.style.width,
+              height: windowEl.style.height,
+              left: windowEl.style.left,
+              top: windowEl.style.top,
+            };
+
+            windowEl.style.width = "100%";
+            windowEl.style.height = "calc(100% - 40px)";
+            windowEl.style.left = "0";
+            windowEl.style.top = "0";
+            isMaximized = true;
+          } else {
+            windowEl.style.width = prevDimensions.width;
+            windowEl.style.height = prevDimensions.height;
+            windowEl.style.left = prevDimensions.left;
+            windowEl.style.top = prevDimensions.top;
+            isMaximized = false;
+          }
+        });
+      });
+
+      // Handle desktop icons click
+      desktopIcons.forEach((icon) => {
+        icon.addEventListener("click", function () {
+          // Remove selection from other icons
+          desktopIcons.forEach((i) => i.classList.remove("bg-blue-800/50"));
+          // Select this icon
+          this.classList.add("bg-blue-800/50");
+
+          // Get the associated window
+          const windowId = this.dataset.window;
+          if (windowId) {
+            const windowEl = document.getElementById(windowId);
+            const title = windowEl.querySelector(
+              ".window-titlebar div"
+            ).textContent;
+
+            // Show window
+            windowEl.style.display = "block";
+            makeWindowActive(windowEl);
+
+            // Add to taskbar
+            createTaskbarItem(windowId, title);
+          }
+        });
+      });
+
+      // Start menu functionality
+      const startBtn = document.querySelector(".start-btn");
+
+      startBtn.addEventListener("click", function () {
+        // In a real implementation, this would toggle a start menu
+        alert(
+          "CORP.\n\nOFFICIAL BAND WEBSITE\n\nCONSUME YOUR COWORKERS \n\n STEAL OUR CODE:\nhttps://github.com/ConorCorp/corp-website"
+        );
+      });
+    </script>
+  </body>
+</html>
