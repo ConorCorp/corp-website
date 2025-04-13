@@ -107,10 +107,12 @@
       @media (max-width: 768px) {
         .win98-window {
           width: calc(100% - 20px) !important;
-          height: calc(100% - 60px) !important;
+          height: auto !important;
+          max-height: calc(100% - 60px) !important;
           left: 10px !important;
           top: 10px !important;
           position: fixed;
+          overflow-y: auto;
         }
 
         .window-content {
@@ -728,9 +730,10 @@
         function positionWindow() {
           // Check if mobile
           if (window.innerWidth <= 768) {
-            // Mobile - viewport size with margins
+            // Mobile - viewport width with height based on content
             windowEl.style.width = "calc(100% - 20px)";
-            windowEl.style.height = "calc(100% - 60px)";
+            windowEl.style.height = "auto";
+            windowEl.style.maxHeight = "calc(100% - 60px)";
             windowEl.style.left = "10px";
             windowEl.style.top = "10px";
           } else {
