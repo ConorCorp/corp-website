@@ -1,0 +1,13 @@
+{
+  "name": "corp-website",
+  "version": "1.0.0",
+  "description": "CORP.™ Band™ Website™",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.5"
+  }
+}

@@ -1,6 +1,42 @@
-# CORP. band's windows 98 website
+# CORP.™ Band™ Website™
 
-1 file to rule them all.
+Official website for CORP. Built with HTML, CSS, and JavaScript using Tailwind CSS.
+
+## Development Setup
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+### Installation
+1. Clone the repository
+```
+git clone https://github.com/ConorCorp/corp-website.git
+cd corp-website
+```
+
+2. Install dependencies
+```
+npm install
+```
+
+3. Build Tailwind CSS
+```
+npm run build
+```
+
+### Development
+To watch for changes and automatically rebuild CSS:
+```
+npm run watch
+```
+
+Then open `index.html` in your browser.
+
+## License
+CONSUME YOUR COWORKERS PLEASE
+
+https://github.com/ConorCorp/corp-website
 
 ----
 

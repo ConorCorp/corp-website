@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .desktop-icon {
+    @apply flex flex-col items-center justify-center w-20 p-2 cursor-pointer text-white text-center text-sm hover:bg-blue-800/50;
+  }
+  .icon-img {
+    @apply w-10 h-10 mb-1;
+  }
+  .win98-btn {
+    @apply px-4 py-1 bg-win98-gray shadow-win98-out font-ms-sans active:shadow-win98-in;
+  }
+  .start-btn {
+    @apply flex items-center px-2 py-1 bg-win98-gray shadow-win98-out font-ms-sans active:shadow-win98-in;
+  }
+  .win98-window {
+    @apply fixed bg-win98-gray shadow-win98-window rounded-none overflow-hidden z-10 hidden p-1 w-[500px] max-h-[600px];
+  }
+  .window-titlebar {
+    @apply flex items-center justify-between px-1 py-1 bg-win98-blue text-white font-bold cursor-move mb-1;
+  }
+  .window-content {
+    @apply p-4 bg-win98-gray overflow-y-auto max-h-[calc(600px-28px)]; /* this max-h is needed for scrollbar to render. calc(600px-28px) only comes into effect to match the max height of .win98-window  */
+  }
+  .window-controls {
+    @apply flex space-x-1;
+  }
+  .window-control-btn {
+    @apply w-5 h-5 bg-win98-gray shadow-win98-out active:shadow-win98-in flex items-center justify-center text-black;
+  }
+  .window-control-hide-sm {
+    @apply hidden lg:flex;
+  }
+  .taskbar-item {
+    @apply h-7 px-2 shadow-win98-out flex items-center cursor-pointer;
+  }
+
+  .taskbar-item img.icon {
+    @apply w-4 h-4 mr-1;
+  }
+}
+
+/* MS Sans Serif font */
+@font-face {
+  font-family: "MS Sans Serif";
+  src: url("https://unpkg.com/98.css@0.1.17/dist/ms_sans_serif.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Mobile device styles */
+@media (max-width: 768px) {
+  .desktop-icons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    width: 12rem;
+  }
+
+  .win98-window {
+    width: calc(100% - 20px) !important;
+    height: auto !important;
+    max-height: calc(100% - 60px) !important;
+    left: 10px !important;
+    top: 10px !important;
+    position: fixed;
+    display: none;
+    flex-direction: column;
+  }
+
+  .window-content {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+
+  .taskbar-item {
+    width: 30px !important;
+    padding: 0 !important;
+    justify-content: center;
+  }
+
+  .taskbar-item span.title {
+    display: none;
+  }
+
+  .taskbar-item img.icon {
+    display: block;
+  }
+}

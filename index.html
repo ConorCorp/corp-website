@@ -5,33 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CORP.™ Band™ Website™</title>
     <link rel="icon" href="cd.png" type="image/png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              "win98-bg": "#008080",
-              "win98-gray": "#c0c0c0",
-              "win98-blue": "#000080",
-              "win98-dark": "#868a8e",
-              "win98-light": "#ffffff",
-            },
-            boxShadow: {
-              "win98-out":
-                "inset -1px -1px 0 #0a0a0a, inset 1px 1px 0 #ffffff, inset -2px -2px 0 #868a8e, inset 2px 2px 0 #c0c0c0",
-              "win98-in":
-                "inset -1px -1px 0 #ffffff, inset 1px 1px 0 #0a0a0a, inset -2px -2px 0 #c0c0c0, inset 2px 2px 0 #868a8e",
-              "win98-window":
-                "inset 1px 1px 0 #ffffff, inset -1px -1px 0 #0a0a0a, inset 2px 2px 0 #c0c0c0, inset -2px -2px 0 #868a8e",
-            },
-            fontFamily: {
-              "ms-sans": ['"MS Sans Serif"', "Tahoma", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
+    <link href="./dist/output.css" rel="stylesheet" />
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -46,96 +20,6 @@
 
       gtag("config", "G-4Q1BH50NT4");
     </script>
-    <style type="text/tailwindcss">
-      @layer components {
-        .desktop-icon {
-          @apply flex flex-col items-center justify-center w-20 p-2 cursor-pointer text-white text-center text-sm hover:bg-blue-800/50;
-        }
-        .icon-img {
-          @apply w-10 h-10 mb-1;
-        }
-        .win98-btn {
-          @apply px-4 py-1 bg-win98-gray shadow-win98-out font-ms-sans active:shadow-win98-in;
-        }
-        .start-btn {
-          @apply flex items-center px-2 py-1 bg-win98-gray shadow-win98-out font-ms-sans active:shadow-win98-in;
-        }
-        .win98-window {
-          @apply fixed bg-win98-gray shadow-win98-window rounded-none overflow-hidden z-10 hidden p-1 w-[500px] max-h-[600px];
-        }
-        .window-titlebar {
-          @apply flex items-center justify-between px-1 py-1 bg-win98-blue text-white font-bold cursor-move mb-1;
-        }
-        .window-content {
-          @apply p-4 bg-win98-gray overflow-y-auto max-h-[calc(600px-28px)]; /* this max-h is needed for scrollbar to render. calc(600px-28px) only comes into effect to match the max height of .win98-window  */
-        }
-        .window-controls {
-          @apply flex space-x-1;
-        }
-        .window-control-btn {
-          @apply w-5 h-5 bg-win98-gray shadow-win98-out active:shadow-win98-in flex items-center justify-center text-black;
-        }
-        .taskbar-item {
-          @apply h-7 px-2 shadow-win98-out flex items-center cursor-pointer;
-        }
-
-        .taskbar-item img.icon {
-          @apply w-4 h-4 mr-1;
-        }
-      }
-
-      /* MS Sans Serif font */
-      @font-face {
-        font-family: "MS Sans Serif";
-        src: url("https://unpkg.com/98.css@0.1.17/dist/ms_sans_serif.woff2")
-          format("woff2");
-        font-weight: normal;
-        font-style: normal;
-      }
-
-      /* Height-based media query for desktop icons */
-      @media (max-height: 700px) {
-        .desktop-icons {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 0.75rem;
-          width: 12rem;
-        }
-      }
-
-      /* Mobile device styles */
-      @media (max-width: 768px) {
-        .win98-window {
-          width: calc(100% - 20px) !important;
-          height: auto !important;
-          max-height: calc(100% - 60px) !important;
-          left: 10px !important;
-          top: 10px !important;
-          position: fixed;
-          display: none;
-          flex-direction: column;
-        }
-
-        .window-content {
-          max-height: calc(100vh - 120px);
-          overflow-y: auto;
-        }
-
-        .taskbar-item {
-          width: 30px !important;
-          padding: 0 !important;
-          justify-content: center;
-        }
-
-        .taskbar-item span.title {
-          display: none;
-        }
-
-        .taskbar-item img.icon {
-          display: block;
-        }
-      }
-    </style>
   </head>
   <body class="bg-win98-bg font-ms-sans overflow-hidden h-screen flex flex-col">
     <!-- Desktop -->
@@ -205,7 +89,9 @@
           <div>My Computer</div>
           <div class="window-controls">
             <button class="window-control-btn minimize-btn font-bold">_</button>
-            <button class="window-control-btn maximize-btn">
+            <button
+              class="window-control-btn maximize-btn window-control-hide-sm"
+            >
               <div
                 class="w-2 h-2 border border-black bg-win98-gray border-t-2"
               ></div>
@@ -224,7 +110,9 @@
           <div>CORP Music</div>
           <div class="window-controls">
             <button class="window-control-btn minimize-btn font-bold">_</button>
-            <button class="window-control-btn maximize-btn">
+            <button
+              class="window-control-btn maximize-btn window-control-hide-sm"
+            >
               <div
                 class="w-2 h-2 border border-black bg-win98-gray border-t-2"
               ></div>
@@ -293,7 +181,9 @@
           <div>CORP Events</div>
           <div class="window-controls">
             <button class="window-control-btn minimize-btn font-bold">_</button>
-            <button class="window-control-btn maximize-btn">
+            <button
+              class="window-control-btn maximize-btn window-control-hide-sm"
+            >
               <div
                 class="w-2 h-2 border border-black bg-win98-gray border-t-2"
               ></div>
@@ -345,7 +235,9 @@
           <div>Social</div>
           <div class="window-controls">
             <button class="window-control-btn minimize-btn font-bold">_</button>
-            <button class="window-control-btn maximize-btn">
+            <button
+              class="window-control-btn maximize-btn window-control-hide-sm"
+            >
               <div
                 class="w-2 h-2 border border-black bg-win98-gray border-t-2"
               ></div>
@@ -399,7 +291,9 @@
           <div>CORP Merchandise</div>
           <div class="window-controls">
             <button class="window-control-btn minimize-btn font-bold">_</button>
-            <button class="window-control-btn maximize-btn">
+            <button
+              class="window-control-btn maximize-btn window-control-hide-sm"
+            >
               <div
                 class="w-2 h-2 border border-black bg-win98-gray border-t-2"
               ></div>
@@ -431,7 +325,9 @@
           <div>CORP Mailing List</div>
           <div class="window-controls">
             <button class="window-control-btn minimize-btn font-bold">_</button>
-            <button class="window-control-btn maximize-btn">
+            <button
+              class="window-control-btn maximize-btn window-control-hide-sm"
+            >
               <div
                 class="w-2 h-2 border border-black bg-win98-gray border-t-2"
               ></div>
@@ -468,7 +364,9 @@
           <div>CORP Booking</div>
           <div class="window-controls">
             <button class="window-control-btn minimize-btn font-bold">_</button>
-            <button class="window-control-btn maximize-btn">
+            <button
+              class="window-control-btn maximize-btn window-control-hide-sm"
+            >
               <div
                 class="w-2 h-2 border border-black bg-win98-gray border-t-2"
               ></div>
@@ -508,7 +406,9 @@
           <div>Recycle Bin</div>
           <div class="window-controls">
             <button class="window-control-btn minimize-btn font-bold">_</button>
-            <button class="window-control-btn maximize-btn">
+            <button
+              class="window-control-btn maximize-btn window-control-hide-sm"
+            >
               <div
                 class="w-2 h-2 border border-black bg-win98-gray border-t-2"
               ></div>
@@ -526,7 +426,9 @@
     </main>
 
     <!-- Taskbar -->
-    <footer class="h-10 bg-win98-gray shadow-win98-out flex items-center px-1">
+    <footer
+      class="h-10 bg-win98-gray shadow-win98-out flex items-center px-1 fixed bottom-0 left-0 right-0 z-50"
+    >
       <!-- Start Button -->
       <button class="start-btn h-7 flex-shrink-0">
         <img
@@ -758,6 +660,12 @@
         let isDragging = false;
         let offsetX, offsetY;
 
+        // Set default window size for desktop
+        if (window.innerWidth > 768) {
+          windowEl.style.width = "500px";
+          windowEl.style.maxHeight = "600px";
+        }
+
         // Position windows based on device size
         function positionWindow() {
           // Check if mobile
@@ -769,8 +677,9 @@
             windowEl.style.left = "10px";
             windowEl.style.top = "10px";
           } else {
-            // Desktop - random positioning with slight offsets
-            const randomX = 50 + Math.random() * 100;
+            // Desktop - random positioning across the screen
+            const maxX = window.innerWidth - 550; // Account for window width
+            const randomX = 20 + Math.random() * maxX;
             const randomY = 50 + Math.random() * 100;
             windowEl.style.left = `${randomX}px`;
             windowEl.style.top = `${randomY}px`;
