@@ -6,6 +6,15 @@
     <title>CORP.™ Band™ Website™</title>
     <link rel="icon" href="assets/cd.png" type="image/png" />
     <link href="./dist/output.css" rel="stylesheet" />
+    <style>
+      .dark-mode {
+        filter: invert(1) hue-rotate(180deg);
+      }
+      .dark-mode img,
+      .dark-mode video {
+        filter: invert(1) hue-rotate(180deg);
+      }
+    </style>
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -63,14 +72,14 @@
       <!-- Desktop Icons -->
       <div class="desktop-icons absolute top-4 left-4 space-y-3 md:space-y-4">
         <!-- Events Icon -->
-        <div class="desktop-icon" data-window="events-window">
+        <div class="desktop-icon" data-window="events">
           <div class="icon-img flex items-center justify-center p-1">
             <img src="assets/calendar.png" alt="Events" class="w-8 h-8" />
           </div>
           <span>Events</span>
         </div>
 
-        <div class="desktop-icon" data-window="social-window">
+        <div class="desktop-icon" data-window="social">
           <div class="icon-img flex items-center justify-center p-1">
             <img src="assets/people.png" alt="Social Media" class="w-8 h-8" />
           </div>
@@ -78,7 +87,7 @@
         </div>
 
         <!-- Merch Icon -->
-        <div class="desktop-icon" data-window="merch-window">
+        <div class="desktop-icon" data-window="merch">
           <div class="icon-img flex items-center justify-center p-1">
             <img src="assets/spider.png" alt="Merch" class="w-8 h-8" />
           </div>
@@ -86,7 +95,7 @@
         </div>
 
         <!-- Music Icon -->
-        <div class="desktop-icon" data-window="music-window">
+        <div class="desktop-icon" data-window="music">
           <div class="icon-img flex items-center justify-center p-1">
             <img src="assets/music.png" alt="Music" class="w-8 h-8" />
           </div>
@@ -94,7 +103,7 @@
         </div>
 
         <!-- Mailing List Icon -->
-        <!-- <div class="desktop-icon" data-window="mailing-window">
+        <!-- <div class="desktop-icon" data-window="mailing">
           <div class="icon-img flex items-center justify-center p-1">
             <img src="assets/mail.png" alt="Mailing List" class="w-8 h-8" />
           </div>
@@ -102,7 +111,7 @@
         </div> -->
 
         <!-- EPK Icon -->
-        <div class="desktop-icon" data-window="booking-window">
+        <div class="desktop-icon" data-window="booking">
           <div class="icon-img flex items-center justify-center p-1">
             <img src="assets/computer.png" alt="Computer" class="w-8 h-8" />
           </div>
@@ -110,7 +119,7 @@
         </div>
 
         <!-- Trash Icon -->
-        <div class="desktop-icon" data-window="trash-window">
+        <div class="desktop-icon" data-window="trash">
           <div class="icon-img flex items-center justify-center p-1">
             <img src="assets/recycle.png" alt="Recycle Bin" class="w-8 h-8" />
           </div>
@@ -120,7 +129,7 @@
 
       <!-- Windows -->
       <!-- Computer Window -->
-      <div id="computer-window" class="win98-window">
+      <div id="computer" class="win98-window">
         <div class="window-titlebar">
           <div>My Computer</div>
           <div class="window-controls">
@@ -141,7 +150,7 @@
       </div>
 
       <!-- Music Window -->
-      <div id="music-window" class="win98-window">
+      <div id="music" class="win98-window">
         <div class="window-titlebar">
           <div>CORP Music</div>
           <div class="window-controls">
@@ -221,7 +230,7 @@
       </div>
 
       <!-- Events Window -->
-      <div id="events-window" class="win98-window">
+      <div id="events" class="win98-window">
         <div class="window-titlebar">
           <div>CORP Events</div>
           <div class="window-controls">
@@ -276,7 +285,7 @@
       </div>
 
       <!-- Social Window -->
-      <div id="social-window" class="win98-window">
+      <div id="social" class="win98-window">
         <div class="window-titlebar">
           <div>Social</div>
           <div class="window-controls">
@@ -332,7 +341,7 @@
       </div>
 
       <!-- Merch Window -->
-      <div id="merch-window" class="win98-window">
+      <div id="merch" class="win98-window">
         <div class="window-titlebar">
           <div>CORP Merchandise</div>
           <div class="window-controls">
@@ -366,7 +375,7 @@
       </div>
 
       <!-- Mailing List Window -->
-      <div id="mailing-window" class="win98-window">
+      <div id="mailing" class="win98-window">
         <div class="window-titlebar">
           <div>CORP Mailing List</div>
           <div class="window-controls">
@@ -405,7 +414,7 @@
       </div>
 
       <!-- EPK Window -->
-      <div id="booking-window" class="win98-window">
+      <div id="booking" class="win98-window">
         <div class="window-titlebar">
           <div>CORP Booking</div>
           <div class="window-controls">
@@ -447,7 +456,7 @@
       </div>
 
       <!-- Trash Window -->
-      <div id="trash-window" class="win98-window">
+      <div id="trash" class="win98-window">
         <div class="window-titlebar">
           <div>Recycle Bin</div>
           <div class="window-controls">
@@ -467,6 +476,88 @@
           <button class="win98-btn" id="empty-recycle-bin">
             Empty Recycle Bin
           </button>
+        </div>
+      </div>
+
+      <!-- Classified Window -->
+      <div id="classified" class="win98-window" style="display: none">
+        <div class="window-titlebar">
+          <div>Classified</div>
+          <div class="window-controls">
+            <button class="window-control-btn minimize-btn font-bold">_</button>
+            <button
+              class="window-control-btn maximize-btn window-control-hide-sm"
+            >
+              <div
+                class="w-2 h-2 border border-black bg-win98-gray border-t-2"
+              ></div>
+            </button>
+            <button class="window-control-btn close-btn">×</button>
+          </div>
+        </div>
+        <div class="window-content">
+          <h2 class="text-xl mb-4">Classified Corporate Resources</h2>
+          <p class="mb-4">
+            For executive eyes only. Clearance level Omega required.
+          </p>
+          <div class="grid grid-cols-1 gap-3 mb-4">
+            <a
+              href="https://github.com/ConorCorp/corp-website"
+              target="_blank"
+              class="win98-btn flex items-center"
+            >
+              <span>Source Code Repository</span>
+            </a>
+            <a
+              href="javascript:void(document.documentElement.requestFullscreen())"
+              class="win98-btn flex items-center"
+            >
+              <span>Activate Fullscreen Mode</span>
+            </a>
+            <a
+              href="javascript:void(document.body.classList.toggle('dark-mode'))"
+              class="win98-btn flex items-center"
+            >
+              <span>Toggle Dark Mode</span>
+            </a>
+            <a
+              href="javascript:void(alert('Employee surveillance initiated. Your productivity is being monitored.'))"
+              class="win98-btn flex items-center"
+            >
+              <span>Run Surveillance Protocol</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Links Window -->
+      <div id="links" class="win98-window" style="display: none">
+        <div class="window-titlebar">
+          <div>Links</div>
+          <div class="window-controls">
+            <button class="window-control-btn minimize-btn font-bold">_</button>
+            <button
+              class="window-control-btn maximize-btn window-control-hide-sm"
+            >
+              <div
+                class="w-2 h-2 border border-black bg-win98-gray border-t-2"
+              ></div>
+            </button>
+            <button class="window-control-btn close-btn">×</button>
+          </div>
+        </div>
+        <div class="window-content">
+          <h2 class="text-xl mb-4">Quick Links</h2>
+          <p class="mb-4">Direct access to official CORP resources:</p>
+          <div class="grid grid-cols-1 gap-3 mb-4">
+            <a
+              href="https://corpband.bandcamp.com/"
+              target="_blank"
+              class="win98-btn flex items-center"
+            >
+              <span>Bandcamp</span>
+            </a>
+          </div>
         </div>
       </div>
     </main>
@@ -636,26 +727,29 @@
           // Get icon image based on windowId
           let iconSrc = "";
           switch (windowId) {
-            case "events-window":
+            case "events":
               iconSrc = "assets/calendar.png";
               break;
-            case "social-window":
+            case "social":
               iconSrc = "assets/people.png";
               break;
-            case "merch-window":
+            case "merch":
               iconSrc = "assets/spider.png";
               break;
-            case "music-window":
+            case "music":
               iconSrc = "assets/music.png";
               break;
-            case "mailing-window":
+            case "mailing":
               iconSrc = "assets/mail.png";
               break;
-            case "booking-window":
+            case "booking":
               iconSrc = "assets/computer.png";
               break;
-            case "trash-window":
+            case "trash":
               iconSrc = "assets/recycle.png";
+              break;
+            case "classified":
+              iconSrc = "assets/windows.png";
               break;
             default:
               iconSrc = "assets/computer.png";
@@ -724,7 +818,7 @@
             windowEl.style.top = "10px";
           } else {
             // Desktop - random positioning across the screen
-            const maxX = window.innerWidth - 550; // Account for window width
+            const maxX = window.innerWidth - window.innerWidth / 2; // Account for window width
             const randomX = 20 + Math.random() * maxX;
             const randomY = 50 + Math.random() * 100;
             windowEl.style.left = `${randomX}px`;
@@ -886,6 +980,22 @@
             windowEl.style.display = "block";
             makeWindowActive(windowEl);
             createTaskbarItem(windowParam, title);
+          }
+        }
+      });
+
+      // Secret Links Window Keyboard Shortcut (Ctrl+Alt)
+      document.addEventListener("keydown", function (e) {
+        if (e.ctrlKey && e.altKey) {
+          e.preventDefault();
+          const linksWindow = document.getElementById("classified");
+          if (linksWindow) {
+            linksWindow.style.display = "block";
+            makeWindowActive(linksWindow);
+            const title = linksWindow.querySelector(
+              ".window-titlebar div"
+            ).textContent;
+            createTaskbarItem("classified", title);
           }
         }
       });
