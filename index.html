@@ -1156,5 +1156,27 @@
         }
       });
     </script>
+    
+    <!-- This finds Custom conversion event for Meta Ads -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('a.win98-btn');
+    
+        buttons.forEach(function(button) {
+          const isEscapeTheRat = button.textContent.includes('Escape the Rat') &&
+                                  button.href.includes('tidal.com');
+    
+          if (isEscapeTheRat) {
+            button.addEventListener('click', function () {
+              console.log('Custom event TidalClickEscapeTheRat sent');
+              fbq('trackCustom', 'TidalClickEscapeTheRat', {
+                destination: button.href,
+                songName: 'Escape the Rat'
+              });
+            });
+          }
+        });
+      });
+    </script>    
   </body>
 </html>
