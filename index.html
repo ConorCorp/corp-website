@@ -66,22 +66,41 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
     <!-- Meta Pixel Code (2nd pixel is on Las Aguas Account) -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1223146679556135');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1223146679556135&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code (2nd pixel is on Las Aguas Account) -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "1223146679556135");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1223146679556135&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code (2nd pixel is on Las Aguas Account) -->
   </head>
   <body class="bg-win98-bg font-ms-sans overflow-hidden h-screen flex flex-col">
     <!-- Desktop -->
@@ -194,7 +213,7 @@
             allowfullscreen
           ></iframe>
           <a
-            href="https://www.youtube.com/@corpband"
+            href="https://www.youtube.com/@corp.812"
             target="_blank"
             class="win98-btn inline-block mt-2 mb-2"
             >Watch More CORP.</a
@@ -684,7 +703,9 @@
               target="_blank"
               class="win98-btn flex items-center"
             >
-              <span>Listen to "Escape the Rat" (What's there to talk about)</span>
+              <span
+                >Listen to "Escape the Rat" (What's there to talk about)</span
+              >
             </a>
           </div>
           <div class="grid grid-cols-1 gap-3 mb-4">
@@ -1156,27 +1177,28 @@
         }
       });
     </script>
-    
+
     <!-- This finds Custom conversion event for Meta Ads -->
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const buttons = document.querySelectorAll('a.win98-btn');
-    
-        buttons.forEach(function(button) {
-          const isEscapeTheRat = button.textContent.includes('Escape the Rat') &&
-                                  button.href.includes('tidal.com');
-    
+      document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll("a.win98-btn");
+
+        buttons.forEach(function (button) {
+          const isEscapeTheRat =
+            button.textContent.includes("Escape the Rat") &&
+            button.href.includes("tidal.com");
+
           if (isEscapeTheRat) {
-            button.addEventListener('click', function () {
-              console.log('Custom event TidalClickEscapeTheRat sent');
-              fbq('trackCustom', 'TidalClickEscapeTheRat', {
+            button.addEventListener("click", function () {
+              console.log("Custom event TidalClickEscapeTheRat sent");
+              fbq("trackCustom", "TidalClickEscapeTheRat", {
                 destination: button.href,
-                songName: 'Escape the Rat'
+                songName: "Escape the Rat",
               });
             });
           }
         });
       });
-    </script>    
+    </script>
   </body>
 </html>
